@@ -103,12 +103,12 @@ const PostComment: FC<PostCommentProps> = ({
           aria-label="reply"
         >
           <MessageSquare className="h-4 w-4 mr-1.5" />
-          Reply
+          Ответить
         </Button>
 
         {isReplying ? (
           <div className="grid w-full gap-1.5">
-            <Label>Your comment</Label>
+            <Label>Ваш комментарий</Label>
             <div className="mt-2">
               <Textarea
                 id="comment"
@@ -138,7 +138,7 @@ const PostComment: FC<PostCommentProps> = ({
                     });
                   }}
                 >
-                  Post
+                  Ответить
                 </Button>
               </div>
             </div>

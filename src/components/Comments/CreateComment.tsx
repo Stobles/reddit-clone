@@ -56,7 +56,7 @@ const CreateComment: FC<CreateCommentProps> = ({ postId, replyToId}) => {
 
   return (
     <div className="grid w-full gap-1.5">
-      <Label htmlFor="comment">Your comment</Label>
+      <Label htmlFor="comment">Ваш комментарий</Label>
       <div className="mt-2">
         <Textarea
           id="comment"
@@ -67,7 +67,7 @@ const CreateComment: FC<CreateCommentProps> = ({ postId, replyToId}) => {
         />
 
         <div className="mt-2 flex justify-end">
-          <Button isLoading={isLoading} disabled={input.length === 0} onClick={() => create({postId, text: input, replyToId})}>Post</Button>
+          <Button isLoading={isLoading} disabled={input.length === 0} onClick={() => create({postId, text: input, replyToId})}>Оставить комментарий</Button>
         </div>
       </div>
     </div>
