@@ -93,7 +93,7 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({ subredditId, subr
       className='w-full mt-1 mb-4'
       onClick={() => unsubscribe()}
     >
-      Leave community
+      Покинуть сообщество.
     </Button>
   ) : (
     <Button
@@ -101,7 +101,7 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({ subredditId, subr
       className='w-full mt-1 mb-4'
       onClick={() => subscribe()}
     >
-      Join to post
+      Вступить в сообщество.
     </Button>
   )
 }

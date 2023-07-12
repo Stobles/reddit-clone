@@ -59,7 +59,7 @@ const Page = () => {
     <div className="container flex items-center h-full max-w-3xl mx-auto">
       <div className="relative bg-white w-full h-fit p-4 rounded-lg space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-xl font-semibold">Create a community</h1>
+          <h1 className="text-xl font-semibold">Создать сообщество</h1>
         </div>
 
         <hr className="bg-zinc-500 h-px" />
@@ -67,7 +67,7 @@ const Page = () => {
         <div>
           <p className="text-lg font-medium">Name</p>
           <p className="text-xs pb-2">
-            Community name including capitalization cannot be changed
+            Имя сообщество не может содержать заглавные буквы
           </p>
 
           <div className="relative">
@@ -84,14 +84,14 @@ const Page = () => {
 
         <div className="flex justify-end gap-4">
           <Button variant="subtle" onClick={() => router.back()}>
-            Cancel
+            Отмена
           </Button>
           <Button
             isLoading={isLoading}
             disabled={input.length === 0}
             onClick={() => createCommunity()}
           >
-            Create Community
+            Создать сообщество
           </Button>
         </div>
       </div>
