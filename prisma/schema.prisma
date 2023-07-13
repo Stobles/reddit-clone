@@ -54,6 +54,8 @@ model User {
 
   username String? @unique
 
+  hashedPassword String? @default("")
+
   image       String?
   accounts    Account[]
   sessions    Session[]

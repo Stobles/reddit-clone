@@ -2,6 +2,8 @@ import { NextAuthOptions, getServerSession } from "next-auth";
 import { db } from "./db";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from 'next-auth/providers/credentials';
+import * as bcrypt from 'bcrypt'
 
 import { nanoid } from "nanoid";
 
@@ -10,6 +12,7 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/sign-in",
   },
@@ -18,6 +21,36 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
+    CredentialsProvider({
+      name: 'credentials',
+      credentials: {
+        email: { label: 'email', type: 'text' },
+        password: { label: 'password', type: 'password' }
+      },
+      async authorize(credentials) {
+        if(!credentials?.email || !credentials?.password) {
+          throw new Error('Неверные данные');
+        }
+
+        const user = await db.user.findUnique({
+          where: {
+            email: credentials.email
+          }
+        });
+
+        if(!user || !user?.hashedPassword) {
+          throw new Error('Неверные данные');
+        }
+
+        const isCorrectPassword = await bcrypt.compare(credentials.password, user.hashedPassword);
+
+        if(!isCorrectPassword) {
+          throw new Error('Неверный пароль');
+        }
+
+        return user;
+      }
+    })
   ],
   callbacks: {
     async session({ token, session }) {
