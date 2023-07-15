@@ -17,7 +17,7 @@ import {
   CardTitle,
 } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input'
-import { Label } from '@/components/ui/label'
+import { Label } from '@/components/ui/Label'
 import { toast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
 import { UsernameValidator } from '@/lib/validators/username'
