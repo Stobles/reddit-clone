@@ -23,15 +23,10 @@ const Subscribes = async () => {
         <div className="text-lg text-center">Вы не авторизованы</div>
       ) : (
         <div>
+          
           {subscriptions.map((subscription) => {
-            return (
-              <Subcription
-                key={subscription.subredditId}
-                subredditId={subscription.subredditId}
-                slug={subscription.subreddit.name}
-                creatorId={subscription.subreddit.creatorId}
-              />
-            );
+            {/* @ts-expect-error server component */}
+            return <Subcription key={subscription.subredditId} subredditId={subscription.subredditId} slug={subscription.subreddit.name} creatorId={subscription.subreddit.creatorId} />
           })}
         </div>
       )}
