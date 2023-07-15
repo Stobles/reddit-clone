@@ -15,7 +15,7 @@ interface SubscribeLeaveToggleProps {
   subredditName: string,
 }
 
-const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({ subredditId, subredditName, isSubscribed }) => {
+const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({ subredditId, subredditName, isSubscribed}) => {
   const { loginToast } = useCustomToast();
   const router = useRouter();
 
@@ -90,18 +90,18 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({ subredditId, subr
   return isSubscribed ? (
     <Button
       isLoading={isUnsubLoading}
-      className='w-full mt-1 mb-4'
+      className='w-full'
       onClick={() => unsubscribe()}
     >
-      Покинуть сообщество.
+      Покинуть.
     </Button>
   ) : (
     <Button
       isLoading={isSubLoading}
-      className='w-full mt-1 mb-4'
+      className='w-full'
       onClick={() => subscribe()}
     >
-      Вступить в сообщество.
+      Вступить.
     </Button>
   )
 }

@@ -18,7 +18,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { toast } from "@/hooks/use-toast";
 import { authVariants } from "@/lib/consts";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 interface SignFormProps {
@@ -83,7 +83,6 @@ const SignForm: FC<SignFormProps> = ({ variant }) => {
     }
 
     if (variant === authVariants.LOGIN) {
-      console.log('Работает')
       setIsLoginLoading(true);
       signIn('credentials', {
         ...data,
@@ -103,6 +102,7 @@ const SignForm: FC<SignFormProps> = ({ variant }) => {
         }
       }).finally(() => {
         setIsLoginLoading(false);
+        router.push('/');
       })
     }
   };
