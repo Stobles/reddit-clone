@@ -95,7 +95,7 @@ const Layout = async ({ children, params: { slug } }: LayoutProps) => {
               <Link
                 className={buttonVariants({
                   variant: "outline",
-                  className: "w-full mb-6",
+                  className: "w-full mb-6 mt-2",
                 })}
                 href={`r/${slug}/submit`}
               >

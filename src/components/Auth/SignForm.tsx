@@ -54,8 +54,8 @@ const SignForm: FC<SignFormProps> = ({ variant }) => {
       if (err instanceof AxiosError) {
         if (err.response?.status === 409) {
           toast({
-            title: "Такой пользователь уже зарегистрирован",
-            description: "Введите другую почту или войдите в аккаунт.",
+            title: "Пользователь с таким никнеймом или почтой уже существует",
+            description: "Введите другие данные или войдите в аккаунт.",
             variant: "destructive",
           });
           return;
@@ -71,9 +71,9 @@ const SignForm: FC<SignFormProps> = ({ variant }) => {
     onSuccess: () => {
       toast({
         title: "Успех",
-        description: 'Аккаунт успешно создан.',
+        description: "Аккаунт успешно создан.",
       });
-      router.push('/sign-in');
+      router.push("/sign-in");
     },
   });
 
@@ -84,26 +84,28 @@ const SignForm: FC<SignFormProps> = ({ variant }) => {
 
     if (variant === authVariants.LOGIN) {
       setIsLoginLoading(true);
-      signIn('credentials', {
+      signIn("credentials", {
         ...data,
         redirect: false,
-      }).then((callback) => {
-        if(callback?.error) {
-          toast({
-            title: 'Ошибка',
-            description: 'Были введены неверные данные',
-            variant: 'destructive',
-          })
-        }
-        if(callback?.ok && !callback?.error) {
-          toast({
-            title: 'Вы успешно вошли',
-          })
-        }
-      }).finally(() => {
-        setIsLoginLoading(false);
-        router.push('/');
       })
+        .then((callback) => {
+          if (callback?.error) {
+            toast({
+              title: "Ошибка",
+              description: "Были введены неверные данные",
+              variant: "destructive",
+            });
+          }
+          if (callback?.ok && !callback?.error) {
+            router.push("/");
+            toast({
+              title: "Вы успешно вошли",
+            });
+          }
+        })
+        .finally(() => {
+          setIsLoginLoading(false);
+        });
     }
   };
 
@@ -117,10 +119,16 @@ const SignForm: FC<SignFormProps> = ({ variant }) => {
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs sm:text-sm">Имя пользователя</FormLabel>
+                  <FormLabel className="text-xs sm:text-sm">
+                    Имя пользователя
+                  </FormLabel>
                   <FormControl>
                     <Input
-                      disabled={variant === authVariants.REGISTER ? isRegisterLoading : isLoginLoading}
+                      disabled={
+                        variant === authVariants.REGISTER
+                          ? isRegisterLoading
+                          : isLoginLoading
+                      }
                       type="text"
                       className="text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2"
                       placeholder="Имя пользователя"
@@ -140,7 +148,11 @@ const SignForm: FC<SignFormProps> = ({ variant }) => {
                 <FormLabel className="text-xs sm:text-sm">E-mail</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={variant === authVariants.REGISTER ? isRegisterLoading : isLoginLoading}
+                    disabled={
+                      variant === authVariants.REGISTER
+                        ? isRegisterLoading
+                        : isLoginLoading
+                    }
                     type="email"
                     className="text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2"
                     placeholder="E-mail"
@@ -159,7 +171,11 @@ const SignForm: FC<SignFormProps> = ({ variant }) => {
                 <FormLabel className="text-xs sm:text-sm">Пароль</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={variant === authVariants.REGISTER ? isRegisterLoading : isLoginLoading}
+                    disabled={
+                      variant === authVariants.REGISTER
+                        ? isRegisterLoading
+                        : isLoginLoading
+                    }
                     className="text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2"
                     placeholder="Пароль"
                     type="password"
@@ -171,8 +187,18 @@ const SignForm: FC<SignFormProps> = ({ variant }) => {
             )}
           />
           <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-            <Button isLoading={variant === authVariants.REGISTER ? isRegisterLoading : isLoginLoading} className="w-full" type="submit">
-              {variant === authVariants.REGISTER ? 'Зарегистрироваться' : 'Войти'}
+            <Button
+              isLoading={
+                variant === authVariants.REGISTER
+                  ? isRegisterLoading
+                  : isLoginLoading
+              }
+              className="w-full"
+              type="submit"
+            >
+              {variant === authVariants.REGISTER
+                ? "Зарегистрироваться"
+                : "Войти"}
             </Button>
           </div>
         </form>

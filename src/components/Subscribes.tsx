@@ -22,12 +22,19 @@ const Subscribes = async () => {
       {!session?.user.id ? (
         <div className="text-lg text-center">Вы не авторизованы</div>
       ) : (
+        
         <div>
+          {subscriptions.length ? (
+            <>
+              {subscriptions.map((subscription) => {
+                {/* @ts-expect-error server component */}
+                return <Subcription key={subscription.subredditId} subredditId={subscription.subredditId} slug={subscription.subreddit.name} creatorId={subscription.subreddit.creatorId} />
+              })}
+            </>
+          ) : (
+            <p className="text-center">Вы ни на что не подписаны.</p>
+          )}
           
-          {subscriptions.map((subscription) => {
-            {/* @ts-expect-error server component */}
-            return <Subcription key={subscription.subredditId} subredditId={subscription.subredditId} slug={subscription.subreddit.name} creatorId={subscription.subreddit.creatorId} />
-          })}
         </div>
       )}
     </div>
