@@ -97,7 +97,7 @@ const Layout = async ({ children, params: { slug } }: LayoutProps) => {
                   variant: "outline",
                   className: "w-full mb-6 mt-2",
                 })}
-                href={`r/${slug}/submit`}
+                href={`/r/${slug}/submit`}
               >
                 Создать пост
               </Link>

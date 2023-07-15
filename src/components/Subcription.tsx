@@ -30,10 +30,10 @@ const Subcription = async ({subredditId, slug, creatorId}: SubcriptionProps) => 
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4" />
-              <Link href={`/r/${slug}`}>r/{slug}</Link>
+              <Link className='w-[100px] truncate' href={`/r/${slug}`}>r/{slug}</Link>
             </div>
             {session?.user.id === creatorId ? (
-              <div>Вы создатель.</div>
+              <div className='max-w-[135px] w-full whitespace-nowrap truncate'>Вы создатель.</div>
             ) : (
               <div>
                 <SubscribeLeaveToggle

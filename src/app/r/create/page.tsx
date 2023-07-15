@@ -51,6 +51,9 @@ const Page = () => {
       }
     },
     onSuccess: (data) => {
+      toast({
+        title: 'Сообщество успешно создано'
+      })
       router.push(`/r/${data}`);
     }
   });

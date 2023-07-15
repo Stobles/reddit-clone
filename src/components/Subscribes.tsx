@@ -17,13 +17,13 @@ const Subscribes = async () => {
   });
 
   return (
-    <div>
+    <div className="h-full">
       <h2 className="mb-2">Подписки</h2>
       {!session?.user.id ? (
         <div className="text-lg text-center">Вы не авторизованы</div>
       ) : (
         
-        <div>
+        <div className="grid grid-rows-4 h-4/5">
           {subscriptions.length ? (
             <>
               {subscriptions.map((subscription) => {

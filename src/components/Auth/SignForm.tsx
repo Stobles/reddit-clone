@@ -97,6 +97,7 @@ const SignForm: FC<SignFormProps> = ({ variant }) => {
             });
           }
           if (callback?.ok && !callback?.error) {
+            router.refresh();
             router.push("/");
             toast({
               title: "Вы успешно вошли",
