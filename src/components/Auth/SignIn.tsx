@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 import { Icons } from "../Icons";
@@ -8,10 +8,6 @@ import { useState } from "react";
 import { authVariants } from "@/lib/consts";
 
 const SignIn = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const login = async () => {}
-
   return (
     <div className="container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[500px]">
       <div className="flex flex-col space-y-2 text-center">
@@ -19,7 +15,7 @@ const SignIn = () => {
         <h1 className="text-2xl font-semibold tracking-tight">
           Добро пожаловать
         </h1>
-        <p className="text-xs sm:text-sm max-w-xs mx-auto">
+        <p className="text-xs max-w-xs mx-auto">
           Продолжая, вы создаете аккаунт на Breadit и соглашаетесь с нашим
           пользовательским соглашением и политикой конфиденциальности.
         </p>
