@@ -61,7 +61,7 @@ const Post: FC<PostProps> = ({
             ref={pRef}
           >
             <EditorOutput content={post.content} />
-            {pRef.current?.clientHeight === 180 ? (
+            {pRef.current?.clientHeight === 160 ? (
               <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-white to-transparent"></div>
             ) : null}
           </div>
