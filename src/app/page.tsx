@@ -16,12 +16,15 @@ export default async function Home() {
       ) : (
         <h1 className="font-bold text-3xl md:text-4xl">Записи</h1>
       )}
-      <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-y-4 lg:gap-x-4 py-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-3 gap-y-4 lg:gap-x-4 py-6">
         {session?.user ? (
-          <Suspense fallback={<div>Загрузка...</div>}>
-            {/* @ts-expect-error server component */}
-            <CustomFeed />
-          </Suspense>
+          <div className="grid col-start-1 col-end-3 row-start-1 row-end-4">
+            <Suspense fallback={<div>Загрузка...</div>}>
+              {/* @ts-expect-error server component */}
+              <CustomFeed />
+            </Suspense>
+          </div>
+          
         ) : (
           <Suspense fallback={<div>Загрузка...</div>}>
             {/* @ts-expect-error server component */}
@@ -30,7 +33,7 @@ export default async function Home() {
         )}
 
         {/* Subreddit info */}
-        <div className="hidden lg:block overflow-hidden col-start-3 row-start-1 h-full rounded-lg border border-gray-200 order-first md:order-last">
+        <div className="hidden lg:block overflow-hidden col-start-3 h-full rounded-lg border border-gray-200 order-first md:order-last">
           <div className="bg-emerald-100 px-6 py-4">
             <p className="font-semibold py-3 flex items-center gap-1.5">
               <HomeIcon className="w-4 h-4" />

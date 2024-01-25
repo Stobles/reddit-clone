@@ -24,11 +24,8 @@ const Subscribes = async () => {
           {subscriptions.length ? (
             <>
               {subscriptions.map((subscription) => {
-                {
-                  /* @ts-expect-error server component */
-                }
-                return (
-                  <Subcription
+                {/* @ts-expect-error server component */}
+                return (<Subcription
                     key={subscription.subredditId}
                     subredditId={subscription.subredditId}
                     slug={subscription.subreddit.name}
