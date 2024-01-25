@@ -8,14 +8,14 @@ import { FC, useEffect, useState } from "react";
 import { Button } from "../ui/Button";
 import { cn } from "@/lib/utils";
 import { useMutation } from "@tanstack/react-query";
-import { CommentVoteRequest, PostVoteRequest } from "@/lib/validators/vote";
+import { CommentVoteRequest } from "@/lib/validators/vote";
 import axios, { AxiosError } from "axios";
 import { toast } from "@/hooks/use-toast";
 
 interface CommentVoteProps {
   commentId: string;
   initialVotesAmt: number;
-  initialVote?: Pick<CommentVote, 'type'> | null;
+  initialVote?: Pick<CommentVote, "type"> | null;
 }
 
 const CommentVote: FC<CommentVoteProps> = ({

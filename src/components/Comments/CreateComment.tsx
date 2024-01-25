@@ -12,11 +12,11 @@ import { useCustomToast } from "@/hooks/use-custom-toast";
 import { useRouter } from "next/navigation";
 
 interface CreateCommentProps {
-  postId: string,
-  replyToId?: string,
+  postId: string;
+  replyToId?: string;
 }
 
-const CreateComment: FC<CreateCommentProps> = ({ postId, replyToId}) => {
+const CreateComment: FC<CreateCommentProps> = ({ postId, replyToId }) => {
   const { loginToast } = useCustomToast();
   const router = useRouter();
   const { mutate: create, isLoading } = useMutation({
@@ -67,7 +67,13 @@ const CreateComment: FC<CreateCommentProps> = ({ postId, replyToId}) => {
         />
 
         <div className="mt-2 flex justify-end">
-          <Button isLoading={isLoading} disabled={input.length === 0} onClick={() => create({postId, text: input, replyToId})}>Оставить комментарий</Button>
+          <Button
+            isLoading={isLoading}
+            disabled={input.length === 0}
+            onClick={() => create({ postId, text: input, replyToId })}
+          >
+            Оставить комментарий
+          </Button>
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ const SignUp = () => {
 
         <SignForm variant={authVariants.REGISTER} />
 
-        <UserAuthGoogleForm  />
+        <UserAuthGoogleForm />
 
         <p className="sm:px-8 text-center text-sm text-zinc-700">
           Уже зарегистрированы?{" "}

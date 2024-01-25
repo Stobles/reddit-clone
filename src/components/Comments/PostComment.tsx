@@ -2,7 +2,7 @@
 
 import { FC, useRef, useState } from "react";
 import UserAvatar from "../UserAvatar";
-import { Comment, CommentVote, User } from "@prisma/client";
+import { CommentVote } from "@prisma/client";
 import { formatTimeToNow } from "@/lib/utils";
 import CommentVotes from "./CommentVotes";
 import { Button } from "../ui/Button";

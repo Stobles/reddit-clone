@@ -1,7 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import SubscribeLeaveToggle from "./SubscribeLeaveToggle";
-import { Users } from "lucide-react";
 import Subcription from "./Subcription";
 
 const Subscribes = async () => {
@@ -22,19 +20,26 @@ const Subscribes = async () => {
       {!session?.user.id ? (
         <div className="text-lg text-center">Вы не авторизованы</div>
       ) : (
-        
         <div className="grid grid-rows-4 h-4/5">
           {subscriptions.length ? (
             <>
               {subscriptions.map((subscription) => {
-                {/* @ts-expect-error server component */}
-                return <Subcription key={subscription.subredditId} subredditId={subscription.subredditId} slug={subscription.subreddit.name} creatorId={subscription.subreddit.creatorId} />
+                {
+                  /* @ts-expect-error server component */
+                }
+                return (
+                  <Subcription
+                    key={subscription.subredditId}
+                    subredditId={subscription.subredditId}
+                    slug={subscription.subreddit.name}
+                    creatorId={subscription.subreddit.creatorId}
+                  />
+                );
               })}
             </>
           ) : (
             <p className="text-center">Вы ни на что не подписаны.</p>
           )}
-          
         </div>
       )}
     </div>

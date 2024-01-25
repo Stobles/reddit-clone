@@ -9,53 +9,57 @@ export async function GET(req: Request) {
 
   let followedCommunitiesIds: string[] = [];
 
-  if(session) {
+  if (session) {
     const followedCommunities = await db.subscription.findMany({
       where: {
         userId: session.user.id,
       },
       include: {
         subreddit: true,
-      }
-    })
+      },
+    });
 
-    followedCommunitiesIds = followedCommunities.map(({subreddit}) => subreddit.id);
+    followedCommunitiesIds = followedCommunities.map(
+      ({ subreddit }) => subreddit.id
+    );
   }
 
   try {
-    const { limit, page, subredditName } = z.object({
-      limit: z.string(),
-      page: z.string(),
-      subredditName: z.string().nullish().optional(),
-    }).parse({
-      subredditName: url.searchParams.get('subredditName'),
-      limit: url.searchParams.get('limit'),
-      page: url.searchParams.get('page'),
-    })
+    const { limit, page, subredditName } = z
+      .object({
+        limit: z.string(),
+        page: z.string(),
+        subredditName: z.string().nullish().optional(),
+      })
+      .parse({
+        subredditName: url.searchParams.get("subredditName"),
+        limit: url.searchParams.get("limit"),
+        page: url.searchParams.get("page"),
+      });
 
     let whereClause = {};
 
-    if(subredditName) {
+    if (subredditName) {
       whereClause = {
         subreddit: {
           name: subredditName,
         },
-      }
+      };
     } else if (session) {
       whereClause = {
         subreddit: {
           id: {
             in: followedCommunitiesIds,
-          }
-        }
-      }
+          },
+        },
+      };
     }
 
     const posts = await db.post.findMany({
       take: parseInt(limit),
       skip: (parseInt(page) - 1) * parseInt(limit),
       orderBy: {
-        createdAt: 'desc',
+        createdAt: "desc",
       },
       include: {
         subreddit: true,
@@ -64,12 +68,12 @@ export async function GET(req: Request) {
         comments: true,
       },
       where: whereClause,
-    })
+    });
 
     return new Response(JSON.stringify(posts));
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return new Response('Invalid request data', { status: 422 });
+      return new Response("Invalid request data", { status: 422 });
     }
 
     return new Response("Could not fetch more posts.", { status: 500 });

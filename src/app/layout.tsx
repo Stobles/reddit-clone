@@ -7,7 +7,7 @@ import { Inter } from "next/font/google";
 
 export const metadata = {
   title: "Breadit",
-  description: 'Клон Reddit созданный с помощью Next.js и Typescript.',
+  description: "Клон Reddit созданный с помощью Next.js и Typescript.",
 };
 
 const inter = Inter({ subsets: ["latin"] });
