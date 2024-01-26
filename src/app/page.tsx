@@ -17,20 +17,23 @@ export default async function Home() {
         <h1 className="font-bold text-3xl md:text-4xl">Записи</h1>
       )}
       <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-3 gap-y-4 lg:gap-x-4 py-6">
-      <div className="grid col-start-1 col-end-3 row-start-1 row-end-4">
+        
           {session?.user ? (
+            <div className="grid col-start-1 col-end-3 row-start-1 row-end-4">
               <Suspense fallback={<div>Загрузка...</div>}>
                 {/* @ts-expect-error server component */}
                 <CustomFeed />
               </Suspense>
-            
+            </div>  
           ) : (
-            <Suspense fallback={<div>Загрузка...</div>}>
-              {/* @ts-expect-error server component */}
-              <GeneralFeed />
-            </Suspense>
+            <div className="grid col-start-1 col-end-3 row-start-1 row-end-4">
+              <Suspense fallback={<div>Загрузка...</div>}>
+                {/* @ts-expect-error server component */}
+                <GeneralFeed />
+              </Suspense>
+            </div>
           )}
-        </div>
+        
 
         {/* Subreddit info */}
         <div className="hidden lg:block overflow-hidden col-start-3 h-full rounded-lg border border-gray-200 order-first md:order-last">
