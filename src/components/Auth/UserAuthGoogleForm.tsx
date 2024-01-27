@@ -20,8 +20,8 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
     } catch (error) {
       // toast notification
       toast({
-        title: "There was a problem",
-        description: "There was an error logging in with Google",
+        title: "Ошибка",
+        description: "Произошла ошибка при авторизации через Google",
         variant: "destructive",
       });
     } finally {

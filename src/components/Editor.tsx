@@ -119,54 +119,58 @@ const Editor: FC<EditorProps> = ({ subredditId }) => {
   }, []);
 
   useEffect(() => {
-    if(Object.keys(errors).length) {
-      for(const [_key, value] of Object.entries(errors)) {
+    if (Object.keys(errors).length) {
+      for (const [_key, value] of Object.entries(errors)) {
         toast({
-          title: 'Something went wrong',
-          description: (value as {message: string}).message,
-          variant: 'destructive',
-        })
+          title: "Что-то пошло не так",
+          description: (value as { message: string }).message,
+          variant: "destructive",
+        });
       }
     }
   }, [errors]);
 
   const { mutate: createPost } = useMutation({
-    mutationFn: async ({title, content,subredditId} : PostCreationRequest) => {
+    mutationFn: async ({
+      title,
+      content,
+      subredditId,
+    }: PostCreationRequest) => {
       const payload: PostCreationRequest = {
         subredditId,
         title,
         content,
-      }
-      const { data } = await axios.post('/api/subreddit/post/create', payload);
+      };
+      const { data } = await axios.post("/api/subreddit/post/create", payload);
       return data;
     },
     onError: (err) => {
-      if(err instanceof AxiosError) {
+      if (err instanceof AxiosError) {
         if (err.response?.status === 400) {
           return toast({
-            title: 'Подпишитесь.',
-            description: 'Вы должны быть подписаны, чтобы создать пост',
-            variant: 'destructive'
-          })
+            title: "Подпишитесь.",
+            description: "Вы должны быть подписаны, чтобы создать пост",
+            variant: "destructive",
+          });
         }
         toast({
-          title: 'There was an error.',
-          description: 'Could not create post.',
-          variant: 'destructive',
-        })
+          title: "Ошибка.",
+          description: "Не удалось создать пост.",
+          variant: "destructive",
+        });
       }
     },
     onSuccess: () => {
-      const newPathname = pathname.split('/').slice(0, -1).join('/');
+      const newPathname = pathname.split("/").slice(0, -1).join("/");
       router.push(newPathname);
 
       router.refresh();
 
       return toast({
-        description: 'Your post has been published.',
-      })
-    }
-  })
+        description: "Ваш пост был опубликован.",
+      });
+    },
+  });
 
   async function onSubmit(data: PostCreationRequest) {
     const blocks = await ref.current?.save();
@@ -175,13 +179,13 @@ const Editor: FC<EditorProps> = ({ subredditId }) => {
       title: data.title,
       content: blocks,
       subredditId,
-    }
+    };
 
-    createPost(payload)
-  } 
+    createPost(payload);
+  }
 
-  if(!isMounted) {
-    return null
+  if (!isMounted) {
+    return null;
   }
 
   return (

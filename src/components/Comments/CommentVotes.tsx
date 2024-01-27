@@ -50,8 +50,8 @@ const CommentVote: FC<CommentVoteProps> = ({
       }
 
       return toast({
-        title: "Something went wrong",
-        description: "Your vote was not registered.",
+        title: "Что-то пошло не так",
+        description: "Ваш голос не был засчитан.",
         variant: "destructive",
       });
     },

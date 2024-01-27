@@ -40,8 +40,8 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       }
 
       return toast({
-        title: "There was a problem",
-        description: "Something went wrong, please try again",
+        title: "Ошибка",
+        description: "Что-то пошло не так. Попробуйте еще раз",
         variant: "destructive",
       });
     },
@@ -51,8 +51,8 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       });
 
       return toast({
-        title: "Subscribed",
-        description: `You are now subscribed to r/${subredditName}`,
+        title: "Подписаны",
+        description: `Теперь вы подписаны на r/${subredditName}`,
       });
     },
   });
@@ -74,8 +74,8 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       }
 
       return toast({
-        title: "There was a problem",
-        description: "Something went wrong, please try again",
+        title: "Ошибка",
+        description: "Что-то пошло не так. Попробуйте еще раз",
         variant: "destructive",
       });
     },
@@ -85,8 +85,8 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       });
 
       return toast({
-        title: "Unsubscribed",
-        description: `You are now unsubscribed to r/${subredditName}`,
+        title: "Отписка",
+        description: `Вы больше не подписаны на r/${subredditName}`,
       });
     },
   });

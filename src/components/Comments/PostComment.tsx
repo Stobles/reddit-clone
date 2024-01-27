@@ -124,7 +124,7 @@ const PostComment: FC<PostCommentProps> = ({
                   variant="subtle"
                   onClick={() => setIsReplying(false)}
                 >
-                  Cancel
+                  Отменить
                 </Button>
                 <Button
                   isLoading={isLoading}
